@@ -66,18 +66,6 @@ export class FormlyFieldRepeatSectionComponent extends FieldType implements OnIn
         return Object.assign({}, this.options);
     }
 
-    ngOnInit(): void {
-        if (isArray(this.model)) {
-            this.model.map(() => {
-                if (this.formControl instanceof FormArray) {
-                    (<FormArray>this.formControl).push(new FormGroup({}));
-                }
-                this._fields.push(cloneDeep(this.field.fieldArray.fieldGroup));
-            });
-        }
-        super.ngOnInit();
-    }
-
     fields(index): FormlyFieldConfig[] {
         if (this._fields[index]) {
             return this._fields[index];
